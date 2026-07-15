@@ -76,8 +76,12 @@ cmp -s "$temporary/expected" "$temporary/actual" || {
 git_index_mode=0
 if command -v git >/dev/null 2>&1; then
   git_top="$(git -C "$root" rev-parse --show-toplevel 2>/dev/null || true)"
-  if [[ -n "$git_top" && "$(cd "$git_top" && pwd -P)" == "$root" ]]; then
-    git_index_mode=1
+  if [[ -n "$git_top" ]]; then
+    manifest_index_entry="$(git -C "$root" ls-files --stage -- manifest.json)"
+    if [[ -n "$manifest_index_entry" &&
+      "$(printf '%s\n' "$manifest_index_entry" | wc -l | tr -d '[:space:]')" == 1 ]]; then
+      git_index_mode=1
+    fi
   fi
 fi
 
@@ -102,12 +106,13 @@ while IFS= read -r path; do
   if ((git_index_mode)); then
     index_entry="$(git -C "$root" ls-files --stage -- "$path")"
     if [[ -z "$index_entry" ]]; then
-      actual_mode="$(file_mode "$file")"
+      echo "Public snapshot file is missing from the Git index: $path" >&2
+      exit 1
     elif [[ "$(printf '%s\n' "$index_entry" | wc -l | tr -d '[:space:]')" == 1 ]]; then
       case "${index_entry%% *}" in
-        100644) actual_mode=644 ;;
-        100755) actual_mode=755 ;;
-        *) actual_mode="${index_entry%% *}" ;;
+      100644) actual_mode=644 ;;
+      100755) actual_mode=755 ;;
+      *) actual_mode="${index_entry%% *}" ;;
       esac
     else
       echo "Public snapshot file is ambiguous in the Git index: $path" >&2
@@ -162,12 +167,38 @@ if ((ci_mode)) || command -v ruby >/dev/null 2>&1; then
     \( -name '*.yml' -o -name '*.yaml' \) -print0)
 fi
 
+if python3 -c 'import tomllib' >/dev/null 2>&1; then
+  python3 - "$root" <<'PY'
+import json
+import pathlib
+import sys
+import tomllib
+
+root = pathlib.Path(sys.argv[1]).resolve()
+manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+published = [root / relative for relative in manifest["files"]]
+
+for path in (
+    item for item in published if item.suffix == ".toml" or item.name.endswith(".toml.tmpl")
+):
+    with path.open("rb") as handle:
+        tomllib.load(handle)
+PY
+else
+  command -v yq >/dev/null 2>&1 || {
+    echo "TOML verification requires Python tomllib or yq." >&2
+    exit 1
+  }
+  while IFS= read -r path; do
+    yq -p=toml -o=json '.' "$root/$path" >/dev/null
+  done < <(jq -r '.files[] | select(endswith(".toml") or endswith(".toml.tmpl"))' "$manifest")
+fi
+
 python3 - "$root" <<'PY'
 import json
 import pathlib
 import re
 import sys
-import tomllib
 import urllib.parse
 
 root = pathlib.Path(sys.argv[1]).resolve()
@@ -177,12 +208,6 @@ published = [root / relative for relative in manifest["files"]]
 for path in (item for item in published if item.suffix == ".json"):
     with path.open("r", encoding="utf-8") as handle:
         json.load(handle)
-
-for path in (
-    item for item in published if item.suffix == ".toml" or item.name.endswith(".toml.tmpl")
-):
-    with path.open("rb") as handle:
-        tomllib.load(handle)
 
 link_pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 for path in (item for item in published if item.suffix == ".md"):
