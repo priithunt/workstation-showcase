@@ -1,0 +1,11 @@
+# Reproducible caches and dependency trees
+.cache
+node_modules
+target
+dist
+
+# Syncthing's own version store is already a separate recovery layer
+.stversions
+
+# Operating-system metadata
+.DS_Store

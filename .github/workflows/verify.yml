@@ -9,10 +9,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: showcase-verify-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - name: Verify exact public tree
-        run: scripts/verify-showcase.sh
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Install syntax checkers
+        run: >-
+          sudo apt-get update &&
+          sudo apt-get install --no-install-recommends --yes
+          lua5.4 python3 ruby shellcheck zsh
+      - name: Verify exact public tree and examples
+        run: scripts/verify-showcase.sh --ci

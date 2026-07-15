@@ -31,9 +31,32 @@ activation. The secondary receives the same commit and repeats the bounded
 activation. Mail synchronization, backup, and unrelated service checks do not
 run.
 
+## Package and runtime example
+
+A Homebrew declaration and a mise runtime pin have different owners. Changing
+the representative package baseline validates the Brewfile and performs only
+the package scope that was reviewed. Changing Node, Go, Java, or pnpm validates
+the mise configuration and installs only the declared runtime. Project
+dependencies and unrelated global tools are not upgraded as a side effect.
+
+## Mail or calendar example
+
+A styleset or key binding is an ordinary file change. A transport, folder-map,
+or hook change is guarded and receives the mail or calendar subsystem verifier.
+Even then, real synchronization is not part of generic configuration
+application. It runs through a dedicated command or the reviewed Calcurse
+pre-load/post-save hook path.
+
 ## Offline secondary
 
 If the secondary is asleep or offline, the approved commit remains on the
 remotes and canary. When the secondary returns, the controller sends the exact
 commit once. An uncertain write result is resolved with a read-only status
 request before any retry.
+
+## Public snapshot example
+
+The public showcase has its own path. Curated private content is checked and
+rendered offline, compared path-by-path with the public checkout, and proposed
+through a public feature branch. Its required CI job validates the exact tree,
+file modes, syntax, links, and sensitive-content rules before squash merge.

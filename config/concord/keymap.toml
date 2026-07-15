@@ -1,0 +1,8 @@
+# Shared Concord navigation policy. Pane widths remain machine-local state.
+[keymap]
+FocusGuildPane = "1"
+FocusChannelPane = "2"
+FocusMessagePane = "3"
+FocusMemberPane = "4"
+ResizePaneLeft = { keys = ["<A-h>", "<A-left>"] }
+ResizePaneRight = { keys = ["<A-l>", "<A-right>"] }
