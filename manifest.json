@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "kind": "curated-workstation-showcase",
+  "history_mode": "snapshot-only",
+  "files": [
+    ".github/workflows/verify.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "config/nvim/init.lua",
+    "config/nvim/lua/priit/core/init.lua",
+    "config/nvim/lua/priit/core/keymaps.lua",
+    "config/nvim/lua/priit/core/options.lua",
+    "config/nvim/lua/priit/lazy.lua",
+    "config/nvim/lua/priit/plugins/init.lua",
+    "config/tmux/tmux.conf",
+    "config/wezterm/wezterm.lua",
+    "docs/architecture.md",
+    "docs/machine-lifecycle.md",
+    "docs/workflows.md",
+    "manifest.json",
+    "scripts/verify-showcase.sh"
+  ]
+}
