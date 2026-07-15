@@ -1,0 +1,8 @@
+case ":$PATH:" in
+*":$HOME/.local/share/mise/shims:"*) ;;
+*) export PATH="$HOME/.local/share/mise/shims:$PATH" ;;
+esac
+
+if [ -r "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi

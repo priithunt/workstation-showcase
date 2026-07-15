@@ -1,0 +1,23 @@
+name: Documentation or example improvement
+description: Report a non-sensitive problem in the published documentation or configuration examples.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: Please do not include credentials, personal endpoints, or machine identities.
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Which document or example needs attention?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: What is unclear or incorrect, and what would make it better?
+    validations:
+      required: true

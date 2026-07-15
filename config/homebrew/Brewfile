@@ -1,0 +1,62 @@
+# Representative shared baseline. Personal applications and App Store
+# ownership are deliberately outside the public snapshot.
+
+tap "chojs23/tap"
+
+# Configuration and runtimes
+brew "chezmoi"
+brew "mise"
+
+# Terminal and navigation
+brew "atuin"
+brew "bat"
+brew "btop"
+brew "duf"
+brew "dust"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "git"
+brew "git-delta"
+brew "lazygit"
+brew "ripgrep"
+brew "tmux"
+brew "yazi"
+brew "zoxide"
+cask "wezterm"
+
+# Inspection and automation
+brew "gh"
+brew "glow"
+brew "hyperfine"
+brew "httpie"
+brew "jq"
+brew "just"
+brew "mermaid-cli"
+brew "pandoc"
+brew "presenterm"
+brew "shellcheck"
+brew "shfmt"
+brew "tokei"
+brew "watchexec"
+brew "yq"
+
+# Editor and build support
+brew "cmake"
+brew "deno"
+brew "neovim"
+brew "ninja"
+brew "pipx"
+brew "tree-sitter-cli"
+brew "uv"
+cask "codex"
+
+# Local-first services and recovery
+brew "aerc"
+brew "age"
+brew "calcurse"
+brew "chojs23/tap/concord"
+brew "isync"
+brew "restic"
+brew "sops"
+brew "syncthing"

@@ -1,0 +1,7 @@
+# Personal identity is redacted from this representative file. Machine-local
+# signing and overrides may live in the local include.
+[init]
+	defaultBranch = main
+
+[include]
+	path = ~/.config/git/local.gitconfig
