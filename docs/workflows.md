@@ -23,6 +23,12 @@ Guarded targets are verified in a detached worktree before the canonical
 checkout fast-forwards. A failing verifier therefore leaves the active commit
 unchanged.
 
+Read-only checks must also remain non-interactive. A service verifier may
+inspect bounded process state and perform a local protocol handshake, but it
+must not require `sudo` merely to prove readiness. The strict signed workflow
+is reserved for inventory cutovers and changes whose impact cannot be bounded;
+ordinary configuration does not inherit that ceremony.
+
 ## Neovim plugin example
 
 Adding a plugin updates the plugin specification and lock file. The canary

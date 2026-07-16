@@ -73,3 +73,9 @@ The canary reaches the secondary through a forced-command protocol with pinned
 host trust. It does not provide an interactive shell, file transfer,
 forwarding, or arbitrary command execution. Responses are bounded and expose
 only the action result, exact commit, role, and path-only drift.
+
+Read-only service readiness checks do not request administrator credentials.
+They combine bounded launch/process state with a local protocol handshake;
+privileged writes remain isolated in explicit installers. This keeps health
+verification usable in unattended automation without weakening the service
+boundary or turning a missing terminal prompt into a false outage.
