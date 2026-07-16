@@ -13,6 +13,7 @@ publishing the production repository or personal service configuration.
 - Git-backed configuration with separate development and deployment checkouts.
 - Canary-first rollout to two logical machine roles.
 - Fast checks for ordinary changes and focused verification for sensitive ones.
+- Privilege-free, non-interactive readiness probes for restricted services.
 - Clear ownership of packages, runtimes, editor tools, data, and secrets.
 - Resumable factory reset and hardware replacement workflows.
 - A deterministic private-to-public publication boundary.
