@@ -8,7 +8,8 @@ edit → focused check → commit → both remotes
 ```
 
 A change may start on either Mac. The canary role controls application order,
-but it does not have to be the machine where the edit was made.
+but it does not have to be the machine where the edit was made. One publish
+command classifies fast, standard, and bounded guarded ranges automatically.
 
 ## Verification levels
 
@@ -16,18 +17,24 @@ but it does not have to be the machine where the edit was made.
 | --- | --- | --- |
 | Fast | Documentation, key bindings, simple configuration | Changed-file checks |
 | Standard | Editor plugins, package declarations, language runtimes | Relevant activation and focused check |
-| Guarded | Remote control, rollout policy, backup or mail helpers | One assigned subsystem verifier |
+| Guarded | Remote control, rollout policy, backup or mail helpers | One assigned verifier and a reusable exact receipt |
 | Strict release | Inventory cutover or an unbounded critical change | Signed canary and completion workflow |
 
-Guarded targets are verified in a detached worktree before the canonical
-checkout fast-forwards. A failing verifier therefore leaves the active commit
-unchanged.
+Guarded publication binds its one verifier result to the exact base, commit,
+changed-path hash, and verifier groups. The canary apply reuses that receipt
+instead of rerunning the verifier. The secondary performs only its one focused
+host pass when it receives the exact commit.
 
 Read-only checks must also remain non-interactive. A service verifier may
 inspect bounded process state and perform a local protocol handshake, but it
 must not require `sudo` merely to prove readiness. The strict signed workflow
 is reserved for inventory cutovers and changes whose impact cannot be bounded;
 ordinary configuration does not inherit that ceremony.
+
+The complete workstation audit is a scheduled or explicitly requested health
+check, not a per-commit gate. Documentation and ordinary configuration usually
+finish in under a minute; package installation is dominated by the selected
+package manager rather than repository ceremony.
 
 ## Neovim plugin example
 
