@@ -3,13 +3,16 @@
 ## Everyday path
 
 ```text
-edit → focused check → commit → both remotes
-→ canary apply → secondary restricted sync → clean final state
+edit → focused check → commit → one canary convergence command
+→ both remotes → canary apply → secondary restricted sync → clean final state
 ```
 
 A change may start on either Mac. The canary role controls application order,
-but it does not have to be the machine where the edit was made. One publish
-command classifies fast, standard, and bounded guarded ranges automatically.
+but it does not have to be the machine where the edit was made. One daily
+command publishes a local descendant or receives an identical remote
+descendant, applies the canary, selects the secondary action from exact local
+approval, and reports all three states. The underlying publisher classifies
+fast, standard, and bounded guarded ranges automatically.
 
 ## Verification levels
 
@@ -63,9 +66,10 @@ pre-load/post-save hook path.
 ## Offline secondary
 
 If the secondary is asleep or offline, the approved commit remains on the
-remotes and canary. When the secondary returns, the controller sends the exact
-commit once. An uncertain write result is resolved with a read-only status
-request before any retry.
+remotes and canary as a successful pending state. Running the same command when
+the secondary returns reuses completed work and sends the exact commit once. An
+uncertain write result is resolved with one read-only status request; a
+state-changing action is never retried blindly.
 
 ## Public snapshot example
 

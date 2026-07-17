@@ -12,6 +12,8 @@ publishing the production repository or personal service configuration.
 
 - Git-backed configuration with separate development and deployment checkouts.
 - Canary-first rollout to two logical machine roles.
+- One daily canary command that reconciles source, canary apply, and the
+  restricted secondary update, including offline resume.
 - Single-pass checks for ordinary changes and reusable, commit-bound evidence
   for bounded critical ones.
 - Privilege-free, non-interactive readiness probes for restricted services.
@@ -49,7 +51,9 @@ flowchart LR
 ```
 
 The cross-Mac channel is not an interactive shell. It accepts only reviewed,
-bounded actions and reports the exact commit plus path-only status.
+bounded actions and reports the exact commit plus path-only status. The daily
+controller selects the appropriate bounded action from the canary's exact
+approval instead of requiring commands to be copied between machines.
 
 ## Configuration tour
 
