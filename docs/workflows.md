@@ -57,9 +57,17 @@ XDG directories. The normal convergence command applies the reviewed commit
 canary-first and then secondary.
 
 ```text
-package plan → select scopes → prepare reviewable Git intent
+ordinary Homebrew: detect cached candidates → one intent commit when needed
+→ normal two-Mac convergence
+
+mixed maintenance: plan → select scopes → prepare reviewable Git intent
 → review and commit → normal two-Mac convergence
 ```
+
+The ordinary Homebrew command requires clean development `main` and identical
+cached remote refs. An empty candidate list creates no branch, commit,
+publication, or installed-software change. The mixed lower-level path remains
+available for Homebrew, mise, and Neovim changes that need manual review.
 
 Homebrew upgrades only formulae and casks declared by the rendered Brewfiles,
 without greedy cask updates, automatic application quitting, autoremove, or
@@ -84,6 +92,14 @@ remotes and canary as a successful pending state. Running the same command when
 the secondary returns reuses completed work and sends the exact commit once. An
 uncertain write result is resolved with one read-only status request; a
 state-changing action is never retried blindly.
+
+## Quick read-only status
+
+Before changing anything, one local status command summarizes cached
+development and deployment refs, Git and configuration drift, package
+candidates, and restricted secondary state. It does not fetch, apply, upgrade,
+synchronize, back up, or run the full audit. An offline secondary is reported
+as attention instead of turning the status command into a failed deployment.
 
 ## Public snapshot example
 
