@@ -37,12 +37,16 @@ The same rule applies to outside documentation or configuration proposals.
 
 ## Package-maintenance boundary
 
-The private source uses one reviewed maintenance intent for Homebrew, mise,
-and Neovim plugin revisions. Discovery is read-only, preparation changes only
-reviewable repository state, and installation reuses the normal canary-first
-convergence path. Homebrew is limited to declared formulae and casks; mise
-keeps configured ranges; Neovim follows its lockfile. App Store updates remain
-an explicit local administrator action.
+The ordinary Homebrew path detects cached candidates from clean development
+`main`, creates one reviewed maintenance intent only when work exists, and
+reuses the normal canary-first convergence path. An empty candidate list
+creates no branch, commit, publication, or installed-software change.
+
+A lower-level read-only plan and explicit preparation path remains available
+for combined Homebrew, mise, and Neovim plugin revisions. Preparation changes
+only reviewable repository state. Homebrew is limited to declared formulae and
+casks; mise keeps configured ranges; Neovim follows its lockfile. App Store
+updates remain an explicit local administrator action.
 
 This boundary prevents a package refresh from silently becoming cleanup,
 project dependency churn, service activation, synchronization, or backup. A
