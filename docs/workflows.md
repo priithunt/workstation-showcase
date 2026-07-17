@@ -49,11 +49,25 @@ run.
 
 ## Package and runtime example
 
-A Homebrew declaration and a mise runtime pin have different owners. Changing
-the representative package baseline validates the Brewfile and performs only
-the package scope that was reviewed. Changing Node, Go, Java, or pnpm validates
-the mise configuration and installs only the declared runtime. Project
-dependencies and unrelated global tools are not upgraded as a side effect.
+Package discovery and installation are separate operations. A read-only plan
+collects cached Homebrew, mise, and App Store candidates without changing
+installed software. A preparation command then records only selected Homebrew
+or mise maintenance intent and may refresh the Neovim plugin lock in isolated
+XDG directories. The normal convergence command applies the reviewed commit
+canary-first and then secondary.
+
+```text
+package plan → select scopes → prepare reviewable Git intent
+→ review and commit → normal two-Mac convergence
+```
+
+Homebrew upgrades only formulae and casks declared by the rendered Brewfiles,
+without greedy cask updates, automatic application quitting, autoremove, or
+forced cleanup. mise stays inside configured version ranges and does not
+rewrite project lockfiles. Neovim installs the exact prepared lock revision.
+App Store candidates remain visible but manual because their update requires
+interactive privileged authority. Mail, calendar, backup, services, and
+project dependencies are not changed as package-maintenance side effects.
 
 ## Mail or calendar example
 
