@@ -31,3 +31,10 @@ The exact local verifier remains the authority for applying a reviewed commit.
 CI is an asynchronous check of the mirrored private source, not a second
 approval ceremony. Newer updates supersede older in-progress runs, and the
 same push is not duplicated as both a branch and pull-request job.
+
+Host-independent local evidence is also reusable across the two workstations.
+The receipt is accepted only when its base, target, changed-path digest,
+verifier groups, and verification time all match the reconstructed range. This
+keeps independent CI, deployment approval, and host-specific readiness as
+separate signals without repeating the same deterministic fixture on both
+Macs.

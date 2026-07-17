@@ -25,8 +25,11 @@ fast, standard, and bounded guarded ranges automatically.
 
 Guarded publication binds its one verifier result to the exact base, commit,
 changed-path hash, and verifier groups. The canary apply reuses that receipt
-instead of rerunning the verifier. The secondary performs only its one focused
-host pass when it receives the exact commit.
+instead of rerunning the verifier. When every selected verifier is
+host-independent, the restricted controller carries the same bounded receipt
+to the secondary, which reconstructs and validates all bindings before
+accepting it. A host-dependent range still performs one focused secondary
+pass; it never inherits an unrelated full audit.
 
 The private source also has one asynchronous CI path on an Apple Silicon macOS
 runner. It checks syntax, policy fixtures, the active host inventory, and a
@@ -99,6 +102,13 @@ remotes and canary as a successful pending state. Running the same command when
 the secondary returns reuses completed work and sends the exact commit once. An
 uncertain write result is resolved with one read-only status request; a
 state-changing action is never retried blindly.
+
+An interrupted guarded apply stores its original base and target. Recovery may
+therefore resume with either the pre-update base or the already-forwarded
+target, while the transaction record remains authoritative. Authenticated
+endpoint failures return only a bounded phase, error code, and current commit;
+raw child output remains private. Only a genuine SSH transport break has an
+unknown outcome.
 
 ## Quick read-only status
 
