@@ -29,8 +29,10 @@ but it does not become a second user-managed runtime.
 | Safety | `shellcheck`, `shfmt`, `sops`, `age` | Check scripts and support project-scoped encrypted material |
 
 The representative [`Brewfile`](../config/homebrew/Brewfile) shows the public
-baseline. Personal desktop applications and app-store ownership are outside
-the snapshot.
+baseline. Personal desktop applications and app-store ownership remain outside
+the snapshot, while the architecture records a non-secret decision state for
+each personal application: keep, review, or migration-blocked. The review is
+read-only and cannot become automatic package cleanup.
 
 ## Project rules
 

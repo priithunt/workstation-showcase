@@ -12,14 +12,18 @@ publishing the production repository or personal service configuration.
 
 - Git-backed configuration with separate development and deployment checkouts.
 - Canary-first rollout to two logical machine roles.
-- One daily canary command that reconciles source, canary apply, and the
-  restricted secondary update, including offline resume.
+- One small daily interface for status, synchronization, Homebrew maintenance,
+  a read-only weekly overview, and personal application review.
+- One canary synchronization command that reconciles source, canary apply, and
+  the restricted secondary update, including offline resume.
 - Single-pass checks for ordinary changes and reusable, commit-bound evidence
   for bounded critical ones.
 - Independent, host-free CI on Apple Silicon that validates the current
   inventory and a synthetic future ARM secondary without touching either Mac.
 - A quick read-only health snapshot plus one-command Homebrew maintenance that
   creates no Git churn when there is nothing to update.
+- A low-priority weekly report from cached state and explicit keep/review/
+  migration-blocked decisions for personal applications.
 - Reviewable lower-level maintenance for mise runtimes and the Neovim plugin
   lock when multiple package scopes need to move together.
 - Privilege-free, non-interactive readiness probes for restricted services.
@@ -60,6 +64,8 @@ The cross-Mac channel is not an interactive shell. It accepts only reviewed,
 bounded actions and reports the exact commit plus path-only status. The daily
 controller selects the appropriate bounded action from the canary's exact
 approval instead of requiring commands to be copied between machines.
+Strict release receipts, machine lifecycle, backup, mail, and service
+activation remain outside the daily interface.
 
 ## Configuration tour
 
