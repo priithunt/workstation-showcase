@@ -24,6 +24,11 @@ active. The candidate can change only the selected role's hardware binding.
 It must complete bootstrap, local-state restoration, service enrollment, and
 focused verification before the inventory commit can enter the signed cutover.
 
+Source CI can pre-validate the candidate architecture with synthetic inventory
+data before hardware is purchased or enrolled. That removes avoidable template
+and policy surprises while leaving host keys, service identities, local data,
+and the final role binding to the real candidate workflow.
+
 The candidate is not a third production workstation. It is a temporary future
 binding for one of the existing roles.
 

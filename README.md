@@ -16,6 +16,8 @@ publishing the production repository or personal service configuration.
   restricted secondary update, including offline resume.
 - Single-pass checks for ordinary changes and reusable, commit-bound evidence
   for bounded critical ones.
+- Independent, host-free CI on Apple Silicon that validates the current
+  inventory and a synthetic future ARM secondary without touching either Mac.
 - A quick read-only health snapshot plus one-command Homebrew maintenance that
   creates no Git churn when there is nothing to update.
 - Reviewable lower-level maintenance for mise runtimes and the Neovim plugin
@@ -70,6 +72,7 @@ approval instead of requiring commands to be copied between machines.
 - [`docs/mail-and-calendar.md`](docs/mail-and-calendar.md) — local-first service flow without account details.
 - [`docs/synchronization-and-backup.md`](docs/synchronization-and-backup.md) — why synchronization, backup, and secrets remain separate.
 - [`docs/machine-lifecycle.md`](docs/machine-lifecycle.md) — reset, replacement, and retirement model.
+- [`docs/continuous-verification.md`](docs/continuous-verification.md) — bounded private CI and hardware-candidate coverage.
 
 ## How this snapshot stays current
 

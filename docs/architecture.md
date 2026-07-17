@@ -20,6 +20,12 @@ deterministic, hand-reviewed snapshot with an independent Git history.
 Roles are not permanent hardware identities. Replacement hardware can assume a
 role only after a candidate bootstrap and reviewed inventory cutover.
 
+The current secondary may use a different architecture from its eventual
+replacement. Host-independent CI therefore renders both the active inventory
+and a synthetic Apple Silicon secondary before any real machine binding is
+changed. Architecture readiness is source evidence, not permission to bypass
+the candidate bootstrap or signed inventory cutover.
+
 ## Configuration and data planes
 
 ```mermaid
