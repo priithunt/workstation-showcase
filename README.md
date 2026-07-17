@@ -16,6 +16,8 @@ publishing the production repository or personal service configuration.
   restricted secondary update, including offline resume.
 - Single-pass checks for ordinary changes and reusable, commit-bound evidence
   for bounded critical ones.
+- One reviewed package-maintenance intent that keeps Homebrew applications,
+  mise runtimes, and the Neovim plugin lock coordinated across both Macs.
 - Privilege-free, non-interactive readiness probes for restricted services.
 - Clear ownership of packages, runtimes, editor tools, data, and secrets.
 - Resumable factory reset and hardware replacement workflows.

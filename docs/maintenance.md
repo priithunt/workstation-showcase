@@ -35,6 +35,20 @@ The maintainer applies an accepted workflow-pin change to the private curated
 source, renders a fresh snapshot, and only then merges the public pull request.
 The same rule applies to outside documentation or configuration proposals.
 
+## Package-maintenance boundary
+
+The private source uses one reviewed maintenance intent for Homebrew, mise,
+and Neovim plugin revisions. Discovery is read-only, preparation changes only
+reviewable repository state, and installation reuses the normal canary-first
+convergence path. Homebrew is limited to declared formulae and casks; mise
+keeps configured ranges; Neovim follows its lockfile. App Store updates remain
+an explicit local administrator action.
+
+This boundary prevents a package refresh from silently becoming cleanup,
+project dependency churn, service activation, synchronization, or backup. A
+failed selected package scope remains a resumable deployment result rather
+than an invitation to rerun unrelated checks.
+
 ## Review rules
 
 - Render only from the curated source directory, never from live home files.
