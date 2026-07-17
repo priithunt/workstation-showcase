@@ -28,6 +28,13 @@ changed-path hash, and verifier groups. The canary apply reuses that receipt
 instead of rerunning the verifier. The secondary performs only its one focused
 host pass when it receives the exact commit.
 
+The private source also has one asynchronous CI path on an Apple Silicon macOS
+runner. It checks syntax, policy fixtures, the active host inventory, and a
+synthetic ARM secondary without contacting or modifying either workstation.
+This independent signal does not create another rollout approval or make a
+successful local verifier run again. See
+[`continuous-verification.md`](continuous-verification.md).
+
 Read-only checks must also remain non-interactive. A service verifier may
 inspect bounded process state and perform a local protocol handshake, but it
 must not require `sudo` merely to prove readiness. The strict signed workflow
