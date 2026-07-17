@@ -53,6 +53,12 @@ project dependency churn, service activation, synchronization, or backup. A
 failed selected package scope remains a resumable deployment result rather
 than an invitation to rerun unrelated checks.
 
+Personal applications have a separate inventory-only review policy. It makes
+overlapping or stale application roles visible without making maintenance an
+uninstall command. A password manager or other data-owning application remains
+migration-blocked until data transfer and recovery have been decided outside
+the package workflow.
+
 ## Review rules
 
 - Render only from the curated source directory, never from live home files.

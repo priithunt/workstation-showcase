@@ -2,6 +2,16 @@
 
 ## Everyday path
 
+The private source presents routine work through one short operator interface:
+
+```text
+workstation status
+workstation sync
+workstation maintain
+workstation report
+workstation apps
+```
+
 ```text
 edit → focused check → commit → one canary convergence command
 → both remotes → canary apply → secondary restricted sync → clean final state
@@ -48,6 +58,10 @@ The complete workstation audit is a scheduled or explicitly requested health
 check, not a per-commit gate. Documentation and ordinary configuration usually
 finish in under a minute; package installation is dominated by the selected
 package manager rather than repository ceremony.
+
+The daily interface does not expose signed releases, post-verify recovery,
+machine replacement, retirement, backup, mail transport, or service
+activation. Those strict operations retain dedicated helpers and runbooks.
 
 ## Neovim plugin example
 
@@ -117,6 +131,19 @@ development and deployment refs, Git and configuration drift, package
 candidates, and restricted secondary state. It does not fetch, apply, upgrade,
 synchronize, back up, or run the full audit. An offline secondary is reported
 as attention instead of turning the status command into a failed deployment.
+
+## Weekly maintenance overview
+
+A low-priority canary-only job writes one Markdown and one JSON overview every
+Monday. It combines cached two-Mac status, package candidate counts, and the
+personal application decision summary. It does not run at every login and does
+not fetch, apply, upgrade, synchronize, back up, or invoke the full audit. The
+secondary does not schedule a duplicate job.
+
+Personal application decisions are inventory-only: `keep` records an active
+role, `review` marks overlap or uncertain use, and `migration-blocked` prevents
+removal before a separate data and recovery decision. Review never performs an
+automatic uninstall.
 
 ## Public snapshot example
 
